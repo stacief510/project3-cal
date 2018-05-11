@@ -1,19 +1,27 @@
 import React, {Component} from 'react';
-import Calendar from '../components/Calendar';
-import MyRoutes from '../config/routes'
+import Calendar from 'react-calendar';
+import EventModel from '../models/EventModel';
 
 class CalendarContainer extends Component{
-
-	render(){
-		return(
-			<div className="calContainer">
-				<p>Calendar Wrapper</p>
-				 <Calendar /> 
-				{MyRoutes}
-			</div>
-			)
+	constructor(props){
+		super(props)
+        this.state = {
+            date: new Date(),
+        }
 	}
 
+    render() {
+        return (
+            <div>
+                <Calendar
+                    onChange={this.onChange}
+                    value={this.state.date}
+                />
+            </div>
+        );
+    }
+
+    onChange = date => this.setState({ date })
 
 
 }
